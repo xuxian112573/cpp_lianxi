@@ -1,0 +1,162 @@
+cmake_minimum_required(VERSION 2.8.3)
+project(cpp_demo)
+
+## Compile as C++11, supported in ROS Kinetic and newer
+add_compile_options(-std=c++11)
+
+## Find catkin macros and libraries
+## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
+## is used, also find other catkin packages
+find_package(catkin REQUIRED COMPONENTS
+  roscpp
+  std_msgs
+)
+
+
+catkin_package(
+#  INCLUDE_DIRS include
+#  LIBRARIES cpp_demo
+#  CATKIN_DEPENDS roscpp std_msgs
+#  DEPENDS system_lib
+)
+
+###########
+## Build ##
+###########
+
+## Specify additional locations of header files
+## Your package locations should be listed before other locations
+include_directories(
+# include
+  ${catkin_INCLUDE_DIRS}
+)
+
+
+add_executable(python src/python.cpp)
+target_link_libraries(python
+   ${catkin_LIBRARIES}
+ )
+add_executable(zhengyuxuangongshi src/zhengyuxuangongshi.cpp)
+target_link_libraries(zhengyuxuangongshi
+   ${catkin_LIBRARIES}
+ ) 
+
+add_executable(eigen_1 src/eigen_1.cpp)
+target_link_libraries(eigen_1
+   ${catkin_LIBRARIES}
+ )
+add_executable(eigen_2 src/eigen_2.cpp)
+target_link_libraries(eigen_2
+   ${catkin_LIBRARIES}
+ )
+add_executable(eigen_3 src/eigen_3.cpp)
+target_link_libraries(eigen_3
+   ${catkin_LIBRARIES}
+ )
+
+add_executable(eigen_4 src/eigen_4.cpp)
+target_link_libraries(eigen_4
+   ${catkin_LIBRARIES}
+ ) 
+add_executable(eigen_5 src/eigen_5.cpp)
+target_link_libraries(eigen_5
+   ${catkin_LIBRARIES}
+ ) 
+ 
+add_executable(eigen_6 src/eigen_6.cpp)
+target_link_libraries(eigen_6
+   ${catkin_LIBRARIES}
+ ) 
+ 
+add_executable(eigen_7 src/eigen_7.cpp)
+target_link_libraries(eigen_7
+   ${catkin_LIBRARIES}
+ ) 
+ 
+add_executable(eigen_8 src/eigen_8.cpp)
+target_link_libraries(eigen_8
+   ${catkin_LIBRARIES}
+ ) 
+add_executable(eigen_9 src/eigen_9.cpp)
+target_link_libraries(eigen_9
+   ${catkin_LIBRARIES}
+ ) 
+
+
+add_executable(siyuanshuzhuanoulajiao src/siyuanshuzhuanoulajiao.cpp)
+target_link_libraries(siyuanshuzhuanoulajiao
+   ${catkin_LIBRARIES}
+ ) 
+
+add_executable(oulajiaozhuansiyuanshu src/oulajiaozhuansiyuanshu.cpp)
+target_link_libraries(oulajiaozhuansiyuanshu
+   ${catkin_LIBRARIES}
+ )
+
+add_executable(quat2 src/quat2.cpp)
+target_link_libraries(quat2
+   ${catkin_LIBRARIES}
+ )
+add_executable(xiangjitouying src/xiangjitouying.cpp)
+target_link_libraries(xiangjitouying ${catkin_LIBRARIES}) 
+ 
+add_executable(test_1 src/test_1.c)
+target_link_libraries(test_1 ${catkin_LIBRARIES})
+
+add_executable(test_2 src/test_2.c)
+target_link_libraries(test_2 ${catkin_LIBRARIES})
+
+add_executable(test_3 src/test_3.c)
+target_link_libraries(test_3 ${catkin_LIBRARIES})
+
+add_executable(test_4 src/test_4.c)
+target_link_libraries(test_4 ${catkin_LIBRARIES})
+
+add_executable(test_5 src/test_5.c)
+target_link_libraries(test_5 ${catkin_LIBRARIES})
+
+add_executable(zhizhen_1 src/zhizhen_1.c)
+target_link_libraries(zhizhen_1 ${catkin_LIBRARIES})
+
+add_executable(zuobiaozhizhen src/zuobiaozhizhen.cpp)
+target_link_libraries(zuobiaozhizhen ${catkin_LIBRARIES})
+
+add_executable(string_pingjie src/string_pingjie.cpp)
+target_link_libraries(string_pingjie ${catkin_LIBRARIES})
+
+add_executable(stringtochar src/stringtochar.cpp)
+target_link_libraries(stringtochar ${catkin_LIBRARIES})
+
+add_executable(chartostring src/chartostring.cpp)
+target_link_libraries(chartostring ${catkin_LIBRARIES})
+
+add_executable(string-1 src/string-1.cpp)
+target_link_libraries(string-1 ${catkin_LIBRARIES})
+
+add_executable(structstring src/structstring.cpp)
+target_link_libraries(structstring ${catkin_LIBRARIES})
+
+add_executable(arrstruct src/arrstruct.cpp)
+target_link_libraries(arrstruct ${catkin_LIBRARIES})
+
+
+# zhengyuxuangongshi
+## Mark other files for installation (e.g. launch and bag files, etc.)
+# install(FILES
+#   # myfile1
+#   # myfile2
+#   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+# )
+
+#############
+## Testing ##
+#############
+
+## Add gtest based cpp test target and link libraries
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_cpp_demo.cpp)
+# if(TARGET ${PROJECT_NAME}-test)
+#   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
+# endif()
+
+## Add folders to be run by python nosetests
+# catkin_add_nosetests(test)

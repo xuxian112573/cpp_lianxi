@@ -1,0 +1,130 @@
+cmake_minimum_required(VERSION 2.8.3)
+project(pcl_tutorials)
+
+## Compile as C++11, supported in ROS Kinetic and newer
+# add_compile_options(-std=c++11)
+
+## Find catkin macros and libraries
+## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
+## is used, also find other catkin packages
+find_package(catkin REQUIRED COMPONENTS
+  pcl_conversions
+  pcl_msgs
+  pcl_ros
+  sensor_msgs
+)
+
+## System dependencies are found with CMake's conventions
+# find_package(Boost REQUIRED COMPONENTS system)
+include_directories(
+# include
+  ${catkin_INCLUDE_DIRS}
+)
+find_package(PCL REQUIRED)
+
+include_directories(include
+	  ${PCL_INCLUDE_DIRS}
+)
+link_directories(
+  ${PCL_LIBRARY_DIRS}
+)
+
+
+
+catkin_package(
+
+)
+
+add_executable(VoxelGrid_filter src/filter/VoxelGrid_filter.cpp)
+target_link_libraries(VoxelGrid_filter ${catkin_LIBRARIES} ${PCL_LIBRARIES})
+
+add_executable(passthrough src/filter/passthrough.cpp)
+target_link_libraries(passthrough ${catkin_LIBRARIES} ${PCL_LIBRARIES})
+
+add_executable(uniform_sam_keypoint src/filter/uniform_sam_keypoint.cpp)
+target_link_libraries(uniform_sam_keypoint ${catkin_LIBRARIES} ${PCL_LIBRARIES})
+
+add_executable(radius_outlier_filter src/filter/radius_outlier_filter.cpp)
+target_link_libraries(radius_outlier_filter ${catkin_LIBRARIES} ${PCL_LIBRARIES})
+
+add_executable(pcdtoply src/filter/pcdtoply.cpp)
+target_link_libraries(pcdtoply ${catkin_LIBRARIES} ${PCL_LIBRARIES})
+
+add_executable(statistical_removal_filter src/filter/statistical_removal_filter.cpp)
+target_link_libraries(statistical_removal_filter ${catkin_LIBRARIES} ${PCL_LIBRARIES})
+
+add_executable(obitopcd src/filter/obitopcd.cpp)
+target_link_libraries(obitopcd ${catkin_LIBRARIES} ${PCL_LIBRARIES})
+
+add_executable(pcdxianshi src/filter/pcdxianshi.cpp)
+target_link_libraries(pcdxianshi ${catkin_LIBRARIES} ${PCL_LIBRARIES})
+
+add_executable(project_inliers_filter src/filter/project_inliers_filter.cpp)
+target_link_libraries(project_inliers_filter ${catkin_LIBRARIES} ${PCL_LIBRARIES})
+
+add_executable(cylinder_segmentation src/Segmentation/cylinder_segmentation.cpp)
+target_link_libraries(cylinder_segmentation  ${PCL_LIBRARIES})
+
+add_executable(clusters_segmentation src/Segmentation/clusters_segmentation.cpp)
+target_link_libraries(clusters_segmentation  ${PCL_LIBRARIES})
+
+add_executable(region_growing_normal_cur src/Segmentation/region_growing_normal_cur.cpp)
+target_link_libraries(region_growing_normal_cur  ${PCL_LIBRARIES})
+
+add_executable(color_based_region_growing_segmentation src/Segmentation/color_based_region_growing_segmentation.cpp)
+target_link_libraries(color_based_region_growing_segmentation  ${PCL_LIBRARIES})
+add_executable(dianyunshujuduqu src/filter/dianyunshujuduqu.cpp)
+target_link_libraries(dianyunshujuduqu ${catkin_LIBRARIES} ${PCL_LIBRARIES})
+
+add_executable(dianyunxianshi src/filter/dianyunxianshi.cpp)
+target_link_libraries(dianyunxianshi ${catkin_LIBRARIES} ${PCL_LIBRARIES})
+
+add_executable(kdtree_search src/kdtree/kdtree_search.cpp)
+target_link_libraries(kdtree_search ${PCL_LIBRARIES})
+
+add_executable(kdtree_pcd src/kdtree/kdtree_pcd.cpp)
+target_link_libraries(kdtree_pcd ${PCL_LIBRARIES})
+
+add_executable(dianyunpingmianfenge src/RANSAC/dianyunpingmianfenge.cpp)
+target_link_libraries(dianyunpingmianfenge ${PCL_LIBRARIES})
+
+add_executable(fengesuanfa src/RANSAC/fengesuanfa.cpp)
+target_link_libraries(fengesuanfa ${PCL_LIBRARIES})
+add_executable(pintmiandianyunfenge src/RANSAC/pintmiandianyunfenge.cpp)
+target_link_libraries(pintmiandianyunfenge ${PCL_LIBRARIES})
+add_executable(plywrite src/ply/plywrite.cpp)
+target_link_libraries(plywrite ${PCL_LIBRARIES})
+
+add_executable(plyread src/ply/plyread.cpp)
+target_link_libraries(plyread ${PCL_LIBRARIES})
+
+add_executable(plyshow src/ply/plyshow.cpp)
+target_link_libraries(plyshow ${PCL_LIBRARIES})
+
+add_executable(pingmianfenge src/RANSAC/pingmianfenge.cpp)
+target_link_libraries(pingmianfenge ${PCL_LIBRARIES})
+add_executable(yuanzhutifenge src/RANSAC/yuanzhutifenge.cpp)
+target_link_libraries(yuanzhutifenge ${PCL_LIBRARIES})
+
+add_executable(yuanzhutifenge1 src/RANSAC/yuanzhutifenge1.cpp)
+target_link_libraries(yuanzhutifenge1 ${PCL_LIBRARIES})
+
+# 基于对应分组的三维物体识别
+#【1】计算法线向量
+#【2】下采样滤波使用均匀采样（可以试试体素格子下采样）得到关键点
+#【3】为keypoints关键点计算SHOT描述子
+#【4】按存储方法KDTree匹配两个点云（描述子向量匹配）点云分组得到匹配的组 描述 点对匹配关系
+#【5】参考帧霍夫聚类/集合一致性聚类得到 匹配点云cluster  平移矩阵和 匹配点对关系
+#add_executable( correspondence_grouping src/Recognition/correspondence_grouping.cpp)
+#target_link_libraries( correspondence_grouping  ${PCL_LIBRARIES} )
+
+# 隐式形状模型 ISM （隐形状模型 （Implicit Shape Model））
+# 训练模型　识别模型点云
+add_executable(implicit_shape_model src/Recognition/implicit_shape_model.cpp)
+target_link_libraries( implicit_shape_model  ${PCL_LIBRARIES} )
+
+# 3D物体识别的假设检验 对应分组的三维物体识别 icp点云配准　验证结果
+#add_executable( hVObjectRec src/Recognition/hypothesis_Ver_Object_Rec.cpp)
+#target_link_libraries( hVObjectRec  ${PCL_LIBRARIES} )
+
+

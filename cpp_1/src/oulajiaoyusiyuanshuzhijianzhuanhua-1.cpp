@@ -1,0 +1,114 @@
+#include<iostream>
+#include<Eigen/Core>
+#include<Eigen/Geometry>
+
+#define PI (3.1415926535897932346f)
+using namespace std;
+/*
+int main(int argc,char **argv)
+{
+    using::std::cout;
+    using::std::endl;
+   
+    Eigen::Quaterniond q;
+    q.x()=0.64651;
+    q.y()=0.18927;
+    q.z()=0.73877;
+    q.w()=0.02055;
+    
+    //四元数转旋转矩阵
+    Eigen::Matrix3d Rx=q.toRotationMatrix();
+    cout<<"旋转矩阵 RX=: \n"<<Rx<<endl;
+    //cout<<"RX11=: "<<Rx(1,2)<<endl;
+    //旋转矩阵转欧拉角
+    Eigen::Vector3d ea1=Rx.eulerAngles(2,1,0);
+    cout<<"欧拉角：= \n"<<ea1<<endl<<endl;
+    
+    Eigen::Vector3d ea0;
+    ea0=ea1;
+    
+    Eigen::Matrix3d R;
+    R=Eigen::AngleAxisd(ea0[0],Eigen::Vector3d::UnitZ())*Eigen::AngleAxisd(ea0[1],Eigen::Vector3d::UnitY())*Eigen::AngleAxisd(ea0[2],Eigen::Vector3d::UnitX());
+    cout<<"旋转矩阵R:= \n"<<R<<endl;
+    
+    
+    
+    Eigen::Quaterniond q1;
+    
+    q=R;
+    cout<<"四元数为:"<<endl;
+    cout<<"x:= "<<q1.x()<<endl;
+    cout<<"y:= "<<q1.y()<<endl;
+    cout<<"z:= "<<q1.z()<<endl;
+    cout<<"w:= "<<q1.w()<<endl;
+    /*
+    Eigen::Matrix4d M0,M1,M2,M3;
+    M0(0,0)=R(0,0);M0(0,1)=R(0,1);M0(0,2)=R(0,2);M0(0,3)=69.58;
+    M0(1,0)=R(1,0);M0(1,1)=R(1,1);M0(1,2)=R(1,2);M0(1,3)=252.89;
+    M0(2,0)=R(2,0);M0(2,1)=R(2,1);M0(2,2)=R(2,2);M0(2,3)=173.92;
+    M0(3,0)=0;M0(3,1)=0;M0(3,2)=0;M0(3,3)=1;
+    cout<<"方阵M0:= \n"<<M0<<endl;
+    
+    M1=M0.inverse();
+    cout<<"方阵M1:= \n"<<M1<<endl;
+   */
+    
+    
+    //return 0;
+//}*/
+
+Eigen::Matrix4d  goujianfangzhen(double q_x,double q_y,double q_z,double q_w,double x,double y,double z)
+{
+    Eigen::Quaterniond q3;
+    q3.x()=q_x;
+    q3.y()=q_y;
+    q3.z()=q_z;
+    q3.w()=q_w;
+    
+    //四元数转旋转矩阵
+    Eigen::Matrix3d R3=q3.toRotationMatrix();
+    //cout<<"旋转矩阵 RX=: \n"<<R3<<endl;
+    Eigen::Vector3d ea3=R3.eulerAngles(2,1,0);
+    //cout<<"欧拉角：= \n"<<ea3<<endl<<endl;
+    
+    
+    Eigen::Vector3d ea2;
+    ea2=ea3;
+    
+    Eigen::Matrix3d R2;
+    R2=Eigen::AngleAxisd(ea2[0],Eigen::Vector3d::UnitZ())*Eigen::AngleAxisd(ea2[1],Eigen::Vector3d::UnitY())*Eigen::AngleAxisd(ea2[2],Eigen::Vector3d::UnitX());
+    //cout<<"旋转矩阵R:= \n"<<R2<<endl;
+    
+    
+    
+    Eigen::Quaterniond q0;
+    
+    q0=R2;
+    //cout<<"四元数为:"<<endl;
+    //cout<<"x:= "<<q0.x()<<endl;
+    //cout<<"y:= "<<q0.y()<<endl;
+    //cout<<"z:= "<<q0.z()<<endl;
+    //cout<<"w:= "<<q0.w()<<endl;
+    
+    Eigen::Matrix4d M0,M1,M2,M3;
+    M0(0,0)=R2(0,0);M0(0,1)=R2(0,1);M0(0,2)=R2(0,2);M0(0,3)=69.58;
+    M0(1,0)=R2(1,0);M0(1,1)=R2(1,1);M0(1,2)=R2(1,2);M0(1,3)=252.89;
+    M0(2,0)=R2(2,0);M0(2,1)=R2(2,1);M0(2,2)=R2(2,2);M0(2,3)=173.92;
+    M0(3,0)=0;M0(3,1)=0;M0(3,2)=0;M0(3,3)=1;
+    //cout<<"方阵M0:= \n"<<M0<<endl;
+    return M0;
+    //exit;
+      
+}
+
+int main()
+{
+    Eigen::Matrix4d Mat1,Mat3,Mat2,Mat0;
+    //Mat0=goujianfangzhen(0.64651,0.18927,0.73877,0.02055,69.58,252.89,173.92);
+    //cout<<"方阵MAT0:= \n"<<Mat0<<endl;
+    //Mat1=Mat0.inverse();
+    //cout<<"方阵MAT0逆矩阵:= \n"<<Mat1<<endl;
+    Mat2=goujianfangzhen(0.65250,-0.15267,0.70182,-0.24162,620.68,351.04,356.81);
+    cout<<"方阵MAT2:= \n"<<Mat2<<endl;
+    return 0;
+}
